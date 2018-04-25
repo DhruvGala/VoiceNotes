@@ -1,4 +1,7 @@
 package com.example.android.voicenotes;
+/**
+ * created by Dhruv on 04/24/2018
+ */
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,6 +12,14 @@ import java.util.Map;
 
 public class NotesHelper {
 
+    /**
+     * the method is used to save a particular note to the database
+     * might need to implement AsyncTasks to avoid delays in the UI
+     *
+     * @param note
+     * @param context
+     * @return
+     */
     private static String saveNote(Note note, Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -21,6 +32,13 @@ public class NotesHelper {
         return id;
     }
 
+
+    /**
+     * this method gets all the notes that are stored in the database
+     *
+     * @param context
+     * @return
+     */
     private static ArrayList<Note> getAllNotes(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -41,6 +59,12 @@ public class NotesHelper {
         return notes;
     }
 
+    /**
+     * Delete a particular note of the given id from the database
+     * 
+     * @param id
+     * @param context
+     */
     public static void removeNote(String id, Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
