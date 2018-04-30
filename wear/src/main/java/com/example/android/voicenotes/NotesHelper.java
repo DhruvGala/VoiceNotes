@@ -61,7 +61,7 @@ public class NotesHelper {
 
     /**
      * Delete a particular note of the given id from the database
-     * 
+     *
      * @param id
      * @param context
      */
