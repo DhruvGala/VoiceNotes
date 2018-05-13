@@ -4,8 +4,10 @@ package com.example.android.voicenotes;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.wearable.activity.ConfirmationActivity;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -20,7 +22,7 @@ public class NotesHelper {
      * @param context
      * @return
      */
-    private static String saveNote(Note note, Context context) {
+    public static String saveNote(Note note, Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -39,7 +41,7 @@ public class NotesHelper {
      * @param context
      * @return
      */
-    private static ArrayList<Note> getAllNotes(Context context) {
+    public static ArrayList<Note> getAllNotes(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         ArrayList<Note> notes = new ArrayList<>();
@@ -72,5 +74,13 @@ public class NotesHelper {
         editor.remove(id);
 
         editor.commit();
+    }
+
+    public static void displayConfirmation(String message, Context context){
+        Intent intent = new Intent(context, ConfirmationActivity.class);
+        intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE,
+                ConfirmationActivity.SUCCESS_ANIMATION);
+        intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, message);
+        context.startActivity(intent);
     }
 }
